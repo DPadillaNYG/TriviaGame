@@ -31,8 +31,6 @@ main {
     margin: auto;
     border-left: solid rgb(160, 236, 255) 10px;
     border-right: solid rgb(160, 236, 255) 10px;
-    background: url(../images/thenotebook.jpg);
-    background-size: cover;
     position: relative;
     z-index: -1;
 }
@@ -43,7 +41,6 @@ main {
     background-size: cover;
     position: relative;
     z-index: 1;
-    opacity: .75;
 }
 
 h2 {
@@ -61,6 +58,7 @@ h2 {
 
 #trivia-formatting {
     display: flex;
+    position: relative;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -81,12 +79,24 @@ h2 {
 }
 
 li {
-    border: solid 3px rgb(160, 236, 255);
+    /* border: solid 3px black; */
     text-align: center;
     padding: 10px;
     max-width: 80%;
-    width: 400px;
+    width: 750px;
     margin: 10px auto;
+}
+
+#sincerely {
+    position: absolute;
+    bottom: 0;
+    right: 30px;
+}
+
+#sincerely span {
+    position: absolute;
+    right: 275px;
+    bottom: 40px;
 }
 
 /* STICKY FOOTER STYLING */
