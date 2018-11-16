@@ -40,8 +40,10 @@ var trivia = [
 
 // Elemental Variables (for DOM)
 var $triviaDiv = $('#trivia-formatting'); // Main Div
-var $loveMusic = $('#love-music'); // Audio Element
 var $timer = $('<span>');
+var $timeRemainingTxt = $('<p>')
+                        .text("Time Remaining: ")
+                        .attr("id", "time-keeper");
 var $question = $('<p>');
 var $ul = $('<ul>');
 var $anonymousSig = $('<p>')
@@ -49,14 +51,34 @@ var $anonymousSig = $('<p>')
                     .attr("id", "sincerely")
                     .append($('<span>').text("Love,"));
 
+// Audio Elements
+var $loveMusic = $('#love-music');
+var $playClap = $('#clap-sound');
+var $playCheer = $('#cheer-sound');
+var $playTimer = $('#timer-sound');
+var $playTicking = $('#ticking-sound');
+var $finalTicking = $('#final-ticks');
+
 // Standard Game-Specific Variables
 var correctAnswers = 0;
+var $praiseUser = $("<p>");
+
 var incorrectAnswers = 0;
+var $curseUser = $("<p>");
+
 var unansweredCount = 0;
+var $pityUser = $("<p>")
+
+var newGame = 0;
 var timer = 30;
 var countingDown;
 
 $triviaDiv.hide();
+
+function playClap() {
+    $playClap[0].play();
+    $playClap.prop("volume", .20);
+}
 
 function autoPlay() {
     $loveMusic[0].play();
@@ -64,8 +86,9 @@ function autoPlay() {
 }
 
 function startTimer() {
+    timer = 30;
+
     // Creating the Clock Element
-    var $timeRemainingTxt = $('<p>').text("Time Remaining: ").attr("id", "time-keeper");
     $timer.text(timer);
     $timeRemainingTxt.append($timer);
     $triviaDiv.append($timeRemainingTxt);
@@ -73,6 +96,11 @@ function startTimer() {
     // Creating the Countdown Animation
     countingDown = setInterval( function() {
         timer--;
+        if ( timer > 10 ) {
+            $playTicking[0].play();
+        } else if ( timer > 0) {
+            $finalTicking[0].play();
+        }
         $timer.text(timer);
         ifTimesUp();
     }, 1000)
@@ -80,19 +108,78 @@ function startTimer() {
 
 function ifTimesUp() {
     if ( timer === 0 ) {
+        $playTimer[0].play();
         stopTimer();
         $ul.hide();
         $question.hide();
         unansweredCount++;
-        var $pityUser = $("<p>")
+        newGame++;
         $pityUser.text('" You ran out of time, Trivia. "');
         $triviaDiv.append($pityUser);
         $triviaDiv.append($anonymousSig);
+        $pityUser.show();
+        $anonymousSig.show();
+        nextQuestion();
+    }
+}
+
+function restartGame() {
+    if ( newGame === trivia.length ) {
+        hideResults();
+        $timeRemainingTxt.remove();
+        removeCoverImage();
     }
 }
 
 function stopTimer() {
     clearInterval(countingDown);
+}
+
+function resetVariables() {
+    $triviaDiv = $('#trivia-formatting');
+    $timer = $('<span>');
+    $timeRemainingTxt = $('<p>')
+                        .text("Time Remaining: ")
+                        .attr("id", "time-keeper");
+    $question = $('<p>');
+    $ul = $('<ul>');
+    $anonymousSig = $('<p>')
+                        .html("<br>Your &nbsp; Secret &nbsp; Admirer")
+                        .attr("id", "sincerely")
+                        .append($('<span>').text("Love,"));
+}
+
+function removeCoverImage() {
+    $("main").css("background", "url()");
+    $('#wrinkled-letter-design').css("opacity", "");
+    $("main").css("background-size", "");         
+}
+
+function hideResults() {
+    $praiseUser.hide();
+    $curseUser.hide();
+    $pityUser.hide();
+    $anonymousSig.hide();   
+}
+
+function nextQuestion() {
+    setTimeout(function() {
+        if ( newGame !== trivia.length ) {
+            $timeRemainingTxt.remove();
+            hideResults();
+            resetVariables();
+            startTimer();
+            createNewTrivia(newGame);
+            $question.show();
+            $ul.show();
+        }
+        restartGame();
+    }, 5000);
+}
+
+function animateLetter() {
+    $("main").animate({ borderWidth: 0 }, 250);
+    $("main").animate({ width: "100%" }, 4000);
 }
 
 function pressStart() {
@@ -106,10 +193,11 @@ function pressStart() {
 
     // Creating the Start Button Click Event Below
     $startButton.on("click", function() {
+        animateLetter();
         $newDiv.hide();
         autoPlay();
         startTimer();
-        createNewTrivia(0);
+        createNewTrivia(newGame);
     });
 }
 
@@ -121,7 +209,10 @@ function createNewTrivia(objIndexNumber) {
 
     // Creating Answer Choices
     for( var i = 0; i <  trivia[objIndexNumber].choices.length; i++) {
-        $ul.append($("<li>").text(trivia[objIndexNumber].choices[i]).attr("choice", trivia[objIndexNumber].choices[i]));
+        $ul.append($("<li>")
+           .text(trivia[objIndexNumber].choices[i])
+           .attr("choice", trivia[objIndexNumber].choices[i])
+           .css("border", "solid transparent 3px"));
     }
     $triviaDiv.append($ul);
 
@@ -133,9 +224,9 @@ function createNewTrivia(objIndexNumber) {
     // Functionality for Hovering Over Choices
     function $liHoverDesign() {
         $("li").mouseenter( function() {
-            $(this).css("border", "solid 3px black");
+            $(this).css("border", "solid black 3px");
         }).mouseleave( function() {
-            $(this).css("border", "none");
+            $(this).css("border", "solid transparent 3px");
         });     
     } 
 
@@ -143,24 +234,32 @@ function createNewTrivia(objIndexNumber) {
     function choosingAnAnswer() {
         $("li").click( function() {
             if ( $(this).attr("choice") === trivia[objIndexNumber].answer) {
+                $playCheer[0].play();
                 stopTimer();
                 $ul.hide();
                 $question.hide();
                 correctAnswers++;
-                var $praiseUser = $("<p>");
+                newGame++;
                 $praiseUser.text('" That is correct, Trivia <3 "');
                 $triviaDiv.append($praiseUser);
                 $triviaDiv.append($anonymousSig);
+                $praiseUser.show();
+                $anonymousSig.show();
+                nextQuestion();
     
             } else {
+                playClap();
                 stopTimer();
                 $ul.hide();
                 $question.hide();
                 incorrectAnswers++;
-                var $curseUser = $("<p>")
+                newGame++;
                 $curseUser.text('" I\'m sorry Trivia, that is incorrect . "');
                 $triviaDiv.append($curseUser);
                 $triviaDiv.append($anonymousSig);
+                $curseUser.show();
+                $anonymousSig.show();
+                nextQuestion();
             } 
         });
     }

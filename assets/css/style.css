@@ -1,5 +1,6 @@
 html {
     background: url(../images/flowertile.jpg) repeat;
+    box-sizing: border-box!important;
 }
 
 body {
@@ -79,11 +80,12 @@ h2 {
 }
 
 li {
-    /* border: solid 3px black; */
     text-align: center;
     padding: 10px;
     max-width: 80%;
     width: 750px;
+    height: 80px;
+    box-sizing: border-box;
     margin: 10px auto;
 }
 
