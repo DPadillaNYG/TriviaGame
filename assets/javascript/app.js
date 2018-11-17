@@ -10,8 +10,8 @@ var trivia = [
 
     {
         question : "On what holiday did Harry declare his love to Sally?",
-        choices : ["Thanksgiving", "Christmas Eve", "New Year' s Eve", "Valentine' s Day"],
-        answer : "New Year' s Eve",
+        choices : ["Thanksgiving", "Christmas Eve", "New Year's Eve", "Valentine's Day"],
+        answer : "New Year's Eve",
         coverImage : "assets/images/whenharrymetsally.jpg"
     },
 
@@ -31,7 +31,7 @@ var trivia = [
 
     {
         question : "Which famous quote was popularized in Jerry McGuire?",
-        choices : ['"Show Me The Money!"', '"You Complete Me"', '"You Had Me At Hello"', "All of the Above"],
+        choices : ['" Show Me The Money! "', '" You Complete Me "', '" You Had Me At Hello "', "All of the Above"],
         answer : "All of the Above",
         coverImage : "assets/images/jerrymcguire.jpeg"
     }
@@ -48,7 +48,7 @@ var $question = $('<p>');
 var $ul = $('<ul>');
 var $endingUl = $('<ul>').attr('id', 'ul-end-results');
 var $anonymousSig = $('<p>')
-                    .html("<br>Your &nbsp; Secret &nbsp; Admirer")
+                    .html("<br>Your Secret Admirer")
                     .attr("id", "sincerely")
                     .append($('<span>').text("Love,"));
 
@@ -104,7 +104,7 @@ function startTimer() {
         }
         $timer.text(timer);
         ifTimesUp();
-    }, 1000)
+    }, 750)
 }
 
 function ifTimesUp() {
@@ -180,7 +180,7 @@ function resetVariables() {
     $question = $('<p>');
     $ul = $('<ul>');
     $anonymousSig = $('<p>')
-                        .html("<br>Your &nbsp; Secret &nbsp; Admirer")
+                        .html("<br>Your Secret Admirer")
                         .attr("id", "sincerely")
                         .append($('<span>').text("Love,"));
     $endingUl = $('<ul>').attr('id', 'ul-end-results');
@@ -307,7 +307,7 @@ function createNewTrivia(objIndexNumber) {
                 $question.hide();
                 incorrectAnswers++;
                 newGame++;
-                $curseUser.text('" I\'m sorry Trivia, that is incorrect . "');
+                $curseUser.text('" I\'m sorry Trivia, the correct answer was ' + "[" + trivia[objIndexNumber].answer + ']. "');
                 $triviaDiv.append($curseUser);
                 $triviaDiv.append($anonymousSig);
                 $curseUser.show();
