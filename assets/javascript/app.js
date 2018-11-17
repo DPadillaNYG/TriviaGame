@@ -46,6 +46,7 @@ var $timeRemainingTxt = $('<p>')
                         .attr("id", "time-keeper");
 var $question = $('<p>');
 var $ul = $('<ul>');
+var $endingUl = $('<ul>').attr('id', 'ul-end-results');
 var $anonymousSig = $('<p>')
                     .html("<br>Your &nbsp; Secret &nbsp; Admirer")
                     .attr("id", "sincerely")
@@ -67,10 +68,10 @@ var incorrectAnswers = 0;
 var $curseUser = $("<p>");
 
 var unansweredCount = 0;
-var $pityUser = $("<p>")
+var $pityUser = $("<p>");
 
 var newGame = 0;
-var timer = 30;
+var timer = 15;
 var countingDown;
 
 $triviaDiv.hide();
@@ -86,7 +87,7 @@ function autoPlay() {
 }
 
 function startTimer() {
-    timer = 30;
+    timer = 15;
 
     // Creating the Clock Element
     $timer.text(timer);
@@ -96,7 +97,7 @@ function startTimer() {
     // Creating the Countdown Animation
     countingDown = setInterval( function() {
         timer--;
-        if ( timer > 10 ) {
+        if ( timer > 5 ) {
             $playTicking[0].play();
         } else if ( timer > 0) {
             $finalTicking[0].play();
@@ -125,9 +126,44 @@ function ifTimesUp() {
 
 function restartGame() {
     if ( newGame === trivia.length ) {
-        hideResults();
-        $timeRemainingTxt.remove();
-        removeCoverImage();
+        reformatResultPage();
+        // Creating DOM Results Below
+        var $closingRemarks = $('<p>').attr('id', 'closing-text')
+                                      .text('" It \'s time for us to meet each other . "');
+        $triviaDiv.append($closingRemarks);
+
+        for ( var i = 0; i < 3; i++) {
+            var correctText = 'Correct Answers : &nbsp' + correctAnswers;
+            var incorrectText = 'Wrong Answers : &nbsp' + incorrectAnswers;
+            var unansweredText = 'Unanswered : &nbsp' + unansweredCount;
+            var $newLi = $('<li>').attr('class', 'end-results');
+
+            if ( i === 0 ) {
+                $newLi.html(correctText);
+            } else if ( i === 1 ) {
+                $newLi.html(incorrectText);
+            } else {
+                $newLi.html(unansweredText);
+            }
+
+            $endingUl.append($newLi);
+
+            if ( i === 2 ) {
+                $triviaDiv.append($endingUl);
+            }
+        }
+
+        var $revealButton = $('<button>').attr('id', 'reveal-button').text('Reveal Secret Admirer');
+        $triviaDiv.append($revealButton);
+
+        $('#reveal-button').click( function() {
+            $closingRemarks.remove();
+            $endingUl.remove();
+            $revealButton.remove();
+            $triviaDiv.hide();
+            newGame = 0;
+            pressStart();
+        });
     }
 }
 
@@ -147,12 +183,17 @@ function resetVariables() {
                         .html("<br>Your &nbsp; Secret &nbsp; Admirer")
                         .attr("id", "sincerely")
                         .append($('<span>').text("Love,"));
+    $endingUl = $('<ul>').attr('id', 'ul-end-results');
 }
 
-function removeCoverImage() {
+function reformatResultPage() {
+    hideResults();
+    $timeRemainingTxt.remove();
     $("main").css("background", "url()");
-    $('#wrinkled-letter-design').css("opacity", "");
-    $("main").css("background-size", "");         
+    $("main").css("background-size", "");
+    $("main").animate({ width: '60%' }, 4000);
+    $("main").animate({ borderWidth: '10px' }, 250);
+    $("#wrinkled-letter-design").animate({ opacity: '1' }, 1000);         
 }
 
 function hideResults() {
@@ -195,6 +236,7 @@ function pressStart() {
     $startButton.on("click", function() {
         animateLetter();
         $newDiv.hide();
+        $triviaDiv.show();
         autoPlay();
         startTimer();
         createNewTrivia(newGame);
@@ -202,6 +244,14 @@ function pressStart() {
 }
 
 function createNewTrivia(objIndexNumber) {
+    if ( newGame === 0 ) {
+        $question = $('<p>');
+        $ul = $('<ul>');
+        correctAnswers = 0;
+        incorrectAnswers = 0;
+        unansweredCount = 0;
+    }
+
     // Creating Question
     $question.attr("id", "ask-question");
     $question.text(trivia[objIndexNumber].question);
@@ -229,6 +279,9 @@ function createNewTrivia(objIndexNumber) {
             $(this).css("border", "solid transparent 3px");
         });     
     } 
+
+    $question.show();
+    $ul.show();
 
     // Determining plan of action when user clicks or time runs out
     function choosingAnAnswer() {
