@@ -105,7 +105,7 @@ li {
 
 #sincerely span {
     position: absolute;
-    right: 164px;
+    right: 154px;
     bottom: 34px;
 }
 
@@ -118,25 +118,45 @@ li {
 }
 
 #ul-end-results {
-    border: dashed black 5px;
     position: fixed;
+}
+
+video {
+    width: 640px;
+    height: 360px;
+    border: dashed black 10px;
+}
+
+#video-text {
+    font-size: 40px;
+    margin-top: 15px;
+}
+
+#mailbox-pic {
+    background: url(../images/mail-icon.png);
+    height: 100px;
+    width: 100px;
+    position: absolute;
+    bottom: 7px;
+    right: 7px;
 }
 
 #closing-text {
     margin-bottom: 20px;
     position: absolute;
-    top: 140px;
+    top: 100px;
 }
 
 #reveal-button {
     height: 37px;
-    width: 240px;
-    margin-top: 17px;
+    width: 260px;
     font-family: sans-serif;
-    font-size: 21px;
+    font-size: 20px;
     font-variant-caps: petite-caps;
     position: absolute;
-    bottom: 142px;
+    bottom: 154px;
+    color: black;
+    letter-spacing: 1px;
 }
 
 /* STICKY FOOTER STYLING */
