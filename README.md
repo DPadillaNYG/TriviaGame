@@ -49,7 +49,7 @@ I learned on the fly:
 
 ### Comments
 
-I think my favorite part about this project is how clean my code is. I really strived to
+I think my favorite part about this project was how clean my code was. I really strived to
 make the **app.js** read like simple english and avoid DRY Programming. I grouped instructions
 into functions even though I may have not needed to call that function more than once simply
 because it added a level of organization that made it easy to read than just endless lines of
