@@ -290,6 +290,7 @@ function createNewTrivia(objArrIndexNum) {
       $("<li>")
         .text(trivia[objArrIndexNum].choices[i])
         .attr("choice", trivia[objArrIndexNum].choices[i])
+        .addClass("li-choices")
         .css("border", "solid transparent 3px")
     );
   }

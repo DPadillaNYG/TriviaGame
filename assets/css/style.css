@@ -24,21 +24,26 @@ h1 {
   padding-top: 8px;
   padding-left: 40px;
   font-size: 50px;
-  font-family: "Aladin", cursive;
+  font-weight: bold;
+  font-family: "Clicker Script", cursive;
 }
 
 h2 {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 85px;
+  height: 155px;
   width: 155px;
   font-size: 80px;
-  font-family: "Aladin", cursive;
-  color: black;
-  border: solid black 1px;
-  border-radius: 25px;
+  font-family: "Clicker Script", cursive;
+  padding-right: 5px;
+  border: dotted black 3px;
+  border-radius: 50%;
   cursor: pointer;
+}
+
+h2:hover {
+  border: dotted black 6px;
 }
 
 #trivia-formatting {
@@ -51,7 +56,7 @@ h2 {
   width: 60%;
   font-size: 25px;
   font-weight: bolder;
-  font-family: "Aladin", cursive;
+  font-family: "Clicker Script", cursive;
   background: url(../images/wrinkledletter.png);
   background-size: cover;
   margin: auto;
@@ -76,7 +81,7 @@ h2 {
   margin: 0 40px;
 }
 
-li {
+.li-choices {
   text-align: center;
   padding: 10px;
   max-width: 80%;
@@ -102,13 +107,13 @@ li {
 .end-results {
   display: flex;
   justify-content: flex-end;
-  padding: 10px 23px 10px 0;
-  width: 275px;
-  margin: -17px 15px -17px 15px;
+  padding-right: 46px;
 }
 
 #ul-end-results {
-  position: fixed;
+  border: solid black 1px;
+  width: 245px;
+  border-radius: 5px;
 }
 
 video {
