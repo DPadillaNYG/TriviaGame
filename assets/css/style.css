@@ -1,181 +1,176 @@
 html {
-    background: url(../images/flowertile.jpg) repeat;
-    box-sizing: border-box!important;
+  background: url(../images/flowertile.jpg) repeat;
+  box-sizing: border-box !important;
 }
 
 body {
-    position: relative;
-    z-index: -1;
+  position: relative;
+  z-index: -1;
 }
 
 header {
-    opacity: .8;
+  opacity: 0.8;
 }
 
 h1 {
-    display: flex;
-    justify-content: left;
-    align-items: center;
-    box-sizing: border-box;
-    height: 80px;
-    background: rgb(105, 105, 105);
-    color: rgb(160, 236, 255);
-    border-bottom: solid rgb(160, 236, 255) 10px;
-    padding-top: 8px;
-    padding-left: 40px;
-    font-size: 50px;
-    font-family: 'Aladin', cursive;
-}
-
-main {
-    min-height: calc(100vh - 160px);
-    width: 60%;
-    margin: auto;
-    border-left: solid rgb(160, 236, 255) 10px;
-    border-right: solid rgb(160, 236, 255) 10px;
-    position: relative;
-    z-index: -1;
-}
-
-#wrinkled-letter-design {
-    min-height: calc(100vh - 160px);
-    background: url(../images/wrinkledletter.png);
-    background-size: cover;
-    position: relative;
-    z-index: 1;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  box-sizing: border-box;
+  height: 80px;
+  background: rgb(105, 105, 105);
+  color: rgb(160, 236, 255);
+  border-bottom: solid rgb(160, 236, 255) 10px;
+  padding-top: 8px;
+  padding-left: 40px;
+  font-size: 50px;
+  font-family: "Aladin", cursive;
 }
 
 h2 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 85px;
-    width: 155px;
-    font-size: 80px;
-    font-family: 'Aladin', cursive;
-    color: black;
-    border: solid black 1px;
-    border-radius: 25px;
-}
-
-#button-centering {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: calc(100vh - 160px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 85px;
+  width: 155px;
+  font-size: 80px;
+  font-family: "Aladin", cursive;
+  color: black;
+  border: solid black 1px;
+  border-radius: 25px;
+  cursor: pointer;
 }
 
 #trivia-formatting {
-    display: flex;
-    position: relative;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: calc(100vh - 160px);
-    font-size: 25px;
-    font-weight: bolder;
-    font-family: 'Aladin', cursive;
-    color: black;
-    line-height: 60px;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 160px);
+  width: 60%;
+  font-size: 25px;
+  font-weight: bolder;
+  font-family: "Aladin", cursive;
+  background: url(../images/wrinkledletter.png);
+  background-size: cover;
+  margin: auto;
+  border-left: solid rgb(160, 236, 255) 10px;
+  border-right: solid rgb(160, 236, 255) 10px;
+  color: black;
+  line-height: 60px;
+}
+
+#button-centering {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 160px);
 }
 
 #time-keeper {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
 #ask-question {
-    margin: 0 40px;
+  margin: 0 40px;
 }
 
 li {
-    text-align: center;
-    padding: 10px;
-    max-width: 80%;
-    width: 465px;
-    height: 80px;
-    box-sizing: border-box;
-    margin: 10px auto;
+  text-align: center;
+  padding: 10px;
+  max-width: 80%;
+  width: 465px;
+  height: 80px;
+  box-sizing: border-box;
+  margin: 10px auto;
+  cursor: pointer;
 }
 
-#sincerely {
-    position: absolute;
-    bottom: 0;
-    right: 30px;
+#signature {
+  position: absolute;
+  bottom: 0;
+  right: 30px;
 }
 
-#sincerely span {
-    position: absolute;
-    right: 154px;
-    bottom: 34px;
+#signature span {
+  position: absolute;
+  right: 154px;
+  bottom: 34px;
 }
 
 .end-results {
-    display: flex;
-    justify-content: flex-end;
-    padding: 10px 23px 10px 0;
-    width: 275px;
-    margin: -17px 15px -17px 15px;
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px 23px 10px 0;
+  width: 275px;
+  margin: -17px 15px -17px 15px;
 }
 
 #ul-end-results {
-    position: fixed;
+  position: fixed;
 }
 
 video {
-    width: 640px;
-    height: 360px;
-    border: dashed black 10px;
+  width: 640px;
+  height: 360px;
+  border: dashed black 10px;
 }
 
 #video-text {
-    font-size: 40px;
-    margin-top: 15px;
+  font-size: 40px;
+  margin-top: 15px;
 }
 
 #mailbox-pic {
-    background: url(../images/mail-icon.png);
-    height: 100px;
-    width: 100px;
-    position: absolute;
-    bottom: 7px;
-    right: 7px;
+  background: url(../images/mail-icon.png);
+  height: 100px;
+  width: 100px;
+  position: absolute;
+  bottom: 7px;
+  right: 7px;
+}
+
+#mailbox-pic:hover {
+  transform: scale(1.1);
+  cursor: pointer;
 }
 
 #closing-text {
-    margin-bottom: 20px;
-    position: absolute;
-    top: 100px;
+  margin-bottom: 20px;
+  position: absolute;
+  top: 100px;
 }
 
 #reveal-button {
-    height: 37px;
-    width: 260px;
-    font-family: sans-serif;
-    font-size: 20px;
-    font-variant-caps: petite-caps;
-    position: absolute;
-    bottom: 154px;
-    color: black;
-    letter-spacing: 1px;
+  height: 37px;
+  width: 260px;
+  font-family: sans-serif;
+  font-size: 20px;
+  font-variant-caps: petite-caps;
+  position: absolute;
+  bottom: 154px;
+  color: black;
+  letter-spacing: 1px;
 }
 
 /* STICKY FOOTER STYLING */
 #sticky-footer {
-    min-height: calc(100vh - 80px);
-    position: relative;
-    z-index: -1;
+  min-height: calc(100vh - 80px);
+  position: relative;
+  z-index: -1;
 }
 
 footer {
-    box-sizing: border-box;
-    height: 80px;
-    background: rgb(105, 105, 105);
-    opacity: .8;
-    border-top: solid rgb(160, 236, 255) 10px;
-    font-size: 30px;
-    font-family: 'Reenie Beanie', cursive;
-    color: rgb(160, 236, 255);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  box-sizing: border-box;
+  height: 80px;
+  background: rgb(105, 105, 105);
+  opacity: 0.8;
+  border-top: solid rgb(160, 236, 255) 10px;
+  font-size: 30px;
+  font-family: "Reenie Beanie", cursive;
+  color: rgb(160, 236, 255);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
