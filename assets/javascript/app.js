@@ -26,24 +26,49 @@ var trivia = [
   {
     question:
       "Which song played during Sam and Molly's pottery scene in Ghost?",
-    choices: [
-      "Unchained Melody by Righteous Brothers",
-      "Crazy For You by Madonna",
-      "Hello by Lionel Richie",
-      "Time After Time by Cyndi Lauper"
-    ],
-    answer: "Unchained Melody by Righteous Brothers"
+    choices: ["Unchained Melody", "Crazy For You", "Linger", "Time After Time"],
+    answer: "Unchained Melody"
   },
 
   {
     question: "Which famous quote was popularized in Jerry McGuire?",
     choices: [
-      '" Show Me The Money! "',
-      '" You Complete Me "',
-      '" You Had Me At Hello "',
+      "Show Me The Money!",
+      "You Complete Me",
+      "You Had Me At Hello",
       "All of the Above"
     ],
     answer: "All of the Above"
+  },
+
+  {
+    question: "Who accompanied Edward on his business trip in Pretty Woman?",
+    choices: ["His Ex-Wife", "His Secretary", "An Escort", "His Step-Daughter"],
+    answer: "An Escort"
+  },
+
+  {
+    question: "What was Kathleen's screen name in You've Got Mail?",
+    choices: ["Tweetybird", "NYgirl32", "Shopgirl", "Kaffeine"],
+    answer: "Shopgirl"
+  },
+
+  {
+    question: 'This 2003 film is titled " How to _____ a Guy in 10 Days. "',
+    choices: ["Seal", "Steal", "Find", "Lose"],
+    answer: "Lose"
+  },
+
+  {
+    question: "Who did Bella ultimately choose in the Twilight series?",
+    choices: ["Edward", "Justin Bieber", "Jacob", "Christian Grey"],
+    answer: "Edward"
+  },
+
+  {
+    question: "Hitch is a professional _____.",
+    choices: ["Therapist", "Speaker", "Date Doctor", "Sports Coach"],
+    answer: "Date Doctor"
   }
 ];
 
@@ -60,7 +85,6 @@ var $anonymousSig = $("<p>")
   .html("<br>Your Secret Admirer")
   .attr("id", "signature")
   .append($("<span>").text("From,"));
-var $youGotMailPic = $("<div>").attr("id", "mailbox-pic");
 
 // Audio Elements
 var $loveMusic = $("#love-music");
@@ -69,7 +93,7 @@ var $playCheer = $("#cheer-sound");
 var $timerStop = $("#timer-sound");
 var $playTicking = $("#ticking-sound");
 var $finalTicking = $("#final-ticks");
-var $youGotMail = $("#youve-got-mail");
+var $johnCena = $("#john-cena");
 
 // Standard Game-Specific Variables
 var correctAnswers = 0;
@@ -82,7 +106,7 @@ var unansweredCount = 0;
 var $pityUser = $("<p>");
 
 var newGame = 0;
-var timer = 15;
+var timer;
 var intervalId;
 
 function playBuzz() {
@@ -97,7 +121,7 @@ function autoPlay() {
 }
 
 function startTimer() {
-  timer = 10;
+  timer = 15;
 
   // Creating the Clock Element
   $timer.text(timer);
@@ -124,7 +148,7 @@ function ifTimesUp() {
     hideTriviaQuestion();
     unansweredCount++;
     newGame++;
-    $pityUser.text('" You ran out of time, Trivia. "');
+    $pityUser.text("You ran out of time, Trivia.");
     $triviaDiv.append($pityUser).append($anonymousSig);
     $pityUser.show();
     $anonymousSig.show();
@@ -139,7 +163,7 @@ function restartGame() {
     // Creating DOM Results Below
     var $closingRemarks = $("<p>")
       .attr("id", "closing-text")
-      .text('" How about we meet each other face to face? "');
+      .text("How about we meet each other face to face?");
     $triviaDiv.append($closingRemarks);
 
     for (var i = 0; i < 3; i++) {
@@ -163,12 +187,6 @@ function restartGame() {
       }
     }
 
-    // Stylized Restart Button
-    $triviaDiv.append($youGotMailPic);
-    setTimeout(function() {
-      $youGotMailPic.css("background", "url(assets/images/mail-icon-1.png)");
-      $youGotMail[0].play();
-    }, 5000);
     revealSecretAdmirer();
   }
 }
@@ -193,45 +211,47 @@ function resetVariables() {
 }
 
 function revealSecretAdmirer() {
+  // Reveal Button is Created
+  var $button = $("<button>").hide();
+
+  setTimeout(function() {
+    $triviaDiv.append(
+      $button
+        .attr("id", "reveal-button")
+        .text("Reveal Secret Admirer")
+        .fadeIn(3000)
+    );
+  }, 3000);
+
   // Click Event is Assigned Once Player Receieves Mail
   setTimeout(function() {
-    $youGotMailPic.click(function() {
+    $button.click(function() {
       $loveMusic[0].pause();
-      var $video = $("<video>", {
-        src: "assets/video/youveGotMail.m4v",
-        type: "video/m4v",
-        autoplay: "autoplay"
-      });
-      $triviaDiv
-        .css("background", "url()")
-        .css("border-left", "none")
-        .css("border-right", "none")
-        .empty()
-        .append($video)
-        .append(
-          $("<p>")
-            .attr("id", "video-text")
-            .text("Thanks for Playing!")
-        );
-      $youGotMailPic.css("background", "url(assets/images/mail-icon.png)");
+      $johnCena[0].play();
 
       setTimeout(function() {
-        $triviaDiv.fadeOut(6000);
-      }, 23000);
-
-      // Restarts Game 28s After Click
-      setTimeout(function() {
-        $triviaDiv
-          .css("background", "url(assets/images/wrinkledletter.png)")
+        $triviaDiv.empty();
+        $("body").hide();
+        $("html")
+          .css("background", "url(assets/images/JOHNCENA!.gif)")
           .css("background-size", "cover")
-          .css("border-left", "solid rgb(160, 236, 255) 10px")
-          .css("border-right", "solid rgb(160, 236, 255) 10px")
-          .empty();
+          .css("background-repeat", "no-repeat")
+          .css("min-height", "100vh");
+      }, 1841);
+
+      // Restarts Game 7s After Click
+      setTimeout(function() {
+        $("html")
+          .css("background", "url(assets/images/flowertile.jpg)")
+          .css("background-size", "")
+          .css("background-repeat", "repeat")
+          .css("min-height", "");
+        $("body").show();
         newGame = 0;
         pressStart();
-      }, 28000);
+      }, 7841);
     });
-  }, 5000);
+  }, 4500);
 }
 
 function hideResults() {
@@ -266,7 +286,7 @@ function pressStart() {
   var $newDiv = $("<div>").attr("id", "button-centering");
   var $startButton = $("<h2>").text("Start");
   $newDiv.append($startButton);
-  $triviaDiv.append($newDiv).fadeIn(3000);
+  $triviaDiv.append($newDiv);
 
   // Creating the Start Button Click Event Below
   $startButton.on("click", function() {
@@ -327,7 +347,7 @@ function createNewTrivia(objArrIndexNum) {
         hideTriviaQuestion();
         correctAnswers++;
         newGame++;
-        $praiseUser.text('" That is correct, Trivia <3 "');
+        $praiseUser.text("That is correct, Trivia <3");
         $triviaDiv.append($praiseUser).append($anonymousSig);
         $praiseUser.show();
         $anonymousSig.show();
@@ -339,10 +359,10 @@ function createNewTrivia(objArrIndexNum) {
         incorrectAnswers++;
         newGame++;
         $curseUser.text(
-          "\" I'm sorry Trivia, the correct answer was " +
+          "I'm sorry Trivia, the correct answer was " +
             "[" +
             trivia[objArrIndexNum].answer +
-            ']. "'
+            "]."
         );
         $triviaDiv.append($curseUser).append($anonymousSig);
         $curseUser.show();

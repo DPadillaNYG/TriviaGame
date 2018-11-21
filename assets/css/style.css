@@ -1,3 +1,4 @@
+/* GENERAL STYLING */
 html {
   background: url(../images/flowertile.jpg) repeat;
   box-sizing: border-box !important;
@@ -28,6 +29,27 @@ h1 {
   font-family: "Clicker Script", cursive;
 }
 
+#sticky-footer {
+  min-height: calc(100vh - 80px);
+  position: relative;
+  z-index: -1;
+}
+
+footer {
+  box-sizing: border-box;
+  height: 80px;
+  background: rgb(105, 105, 105);
+  opacity: 0.8;
+  border-top: solid rgb(160, 236, 255) 10px;
+  font-size: 30px;
+  font-family: "Reenie Beanie", cursive;
+  color: rgb(160, 236, 255);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* START PAGE STYLING */
 h2 {
   display: flex;
   justify-content: center;
@@ -46,6 +68,14 @@ h2:hover {
   border: dotted black 6px;
 }
 
+#button-centering {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 160px);
+}
+
+/* TRIVIA CONTENT STYLING*/
 #trivia-formatting {
   display: flex;
   position: relative;
@@ -64,13 +94,6 @@ h2:hover {
   border-right: solid rgb(160, 236, 255) 10px;
   color: black;
   line-height: 60px;
-}
-
-#button-centering {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: calc(100vh - 160px);
 }
 
 #time-keeper {
@@ -92,6 +115,7 @@ h2:hover {
   cursor: pointer;
 }
 
+/* LETTER SIGNATURE STYLING*/
 #signature {
   position: absolute;
   bottom: 0;
@@ -104,6 +128,7 @@ h2:hover {
   bottom: 34px;
 }
 
+/* END RESULT STYLING */
 .end-results {
   display: flex;
   justify-content: flex-end;
@@ -114,31 +139,6 @@ h2:hover {
   border: solid black 1px;
   width: 245px;
   border-radius: 5px;
-}
-
-video {
-  width: 640px;
-  height: 360px;
-  border: dashed black 10px;
-}
-
-#video-text {
-  font-size: 40px;
-  margin-top: 15px;
-}
-
-#mailbox-pic {
-  background: url(../images/mail-icon.png);
-  height: 100px;
-  width: 100px;
-  position: absolute;
-  bottom: 7px;
-  right: 7px;
-}
-
-#mailbox-pic:hover {
-  transform: scale(1.1);
-  cursor: pointer;
 }
 
 #closing-text {
@@ -154,28 +154,7 @@ video {
   font-size: 20px;
   font-variant-caps: petite-caps;
   position: absolute;
-  bottom: 154px;
+  bottom: 110px;
   color: black;
   letter-spacing: 1px;
-}
-
-/* STICKY FOOTER STYLING */
-#sticky-footer {
-  min-height: calc(100vh - 80px);
-  position: relative;
-  z-index: -1;
-}
-
-footer {
-  box-sizing: border-box;
-  height: 80px;
-  background: rgb(105, 105, 105);
-  opacity: 0.8;
-  border-top: solid rgb(160, 236, 255) 10px;
-  font-size: 30px;
-  font-family: "Reenie Beanie", cursive;
-  color: rgb(160, 236, 255);
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
