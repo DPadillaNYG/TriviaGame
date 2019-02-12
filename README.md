@@ -1,10 +1,10 @@
-# Trivia Game
+# Dear Trivia
 
 A trivia game utilizing new skills learned with setInterval(), clearInterval(), and setTimeout().
 
 ### Link to Game
 
-https://dpadillanyg.github.io/TriviaGame/
+https://dpadillajs.github.io/DearTrivia/
 
 **Browser compatibility checked with:**
 
